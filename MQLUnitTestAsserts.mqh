@@ -140,6 +140,8 @@ public:
 CUnitTestAsserts::CUnitTestAsserts(string testName)
   {
    m_name = testName;
+   comment = ""; // Clear previous comments
+   Comment(comment); // Update chart display
    Print(" active test: "+m_name);
   }
 
@@ -160,6 +162,7 @@ void CUnitTestAsserts::AddFailedAssert(string file, int line, string message)
    newFailedAssert.SetResult(message);
    m_failedAssertsList.Add(newFailedAssert);
    StringConcatenate(comment, comment, m_name, ":", line, ":", message, "\n");
+   PrintFormat("%s:%d:%s", m_name, line, message); // Log to Experts tab
    Comment(comment);
   }
 
